@@ -41,6 +41,7 @@ Para encerrar a aplicação *master* que está rodando em segundo plano no **ter
 para trazê-la de volta ao primeiro plano e então pressionar `Ctrl+C` para interromper a execução.
 
 <hr>
+
 ## Criando Pacotes
 
 Um *workspace* do catkin contém sempre 3 pastas: `build`, `devel` e `src`. As duas primeiras são manipuladas automaticamente pelo framework e não devem ser mexidas.
@@ -58,7 +59,7 @@ onde `my_robot` é o nome do pacote a ser criado e os demais termos são as APIs
 Entre na pasta do pacote e abra o arquivo `packages.xml` para editar as informações sobre o pacote, caso queira disponibilizá-lo.
 
 > `$ cd my_robot`
-
+>
 > `$ vim packages.xml`
 
 Observe que dentro da pasta do pacote foram criados automaticamente um arquivo `CMake` e pastas `include` e `src`. Para efeitos de organização, será criada uma terceira pasta `script`, onde serão colocados os códigos em Python.
@@ -66,6 +67,7 @@ Observe que dentro da pasta do pacote foram criados automaticamente um arquivo `
 > `$ mkdir script`
 
 <hr>
+
 ## Python API
 
 Com o VScode, abra a pasta de *scripts* e crie um arquivo com o nome `sensor_node.py`, que corresponderá a um nó de sensor *publisher* dentro do ROS, e adicione na primeira linha o código
@@ -77,13 +79,13 @@ para indicar que esse arquivo, ao ser chamado como um executável, é uma aplica
 Após criar o arquivo, é preciso dar permissão para que ele seja tratado como um executável, e não apenas chamando o interpretador da linguagem.
 
 > `$ cd script`
-
+>
 > `$ sudo chmod +x sensor_node.py`
 
 Para compilar o projeto, é preciso ir até a pasta do *workspace* e chamar o comando de *make* do catkin.
 
 > `$ cd ../../..`
-
+>
 > `$ catkin_make`
 
 Também é preciso executar o arquivo de `setup`, que irá criar as variáveis de ambiente do projeto.
@@ -95,10 +97,10 @@ Por fim, para testar o nó criado, será iniciado a aplicação *master* novamen
 No **terminal 1**:
 
 > `$ roscore`
-
+>
 > `Ctrl+Z`
-
-`$ rosrun my_robot sensor_node.py`
+>
+> `$ rosrun my_robot sensor_node.py`
 
 Em caso de edição no *script* em Python não é necessário reexecutar o `make`, uma vez que o *script* não é compilado.
 
@@ -107,6 +109,7 @@ Para completar, adicione um arquivo `app_node.py` para atuar como um *subscriber
 Ao ter o `roscore` e o *publisher* rodando, execute o *subscriber* em um terceiro terminal e acompanhe ele informando o recebimento de cada mensagem. Ao cancelar a execução do `sensor_node`, o `app_node` permanece em aguardo por mensagens, e volta a imprimir em tela uma vez que o *publisher* for reexecutado.
 
 <hr>
+
 ## Aplicação: Controle de um AGV
 
 **Tarefa**
@@ -120,26 +123,26 @@ Foi criado um script `motor_node.py` e os seguintes comandos do terminal são ex
 
 No **terminal 1** será checado os tópicos ativos e fito o acompanhamento do log de `motor_node`:
 
-`$ roscore
-
-`Ctrl+Z`
-
-`$ rostopic list`
-
-`$ rosrun my_robot motor_node`
+> `$ roscore
+>
+> `Ctrl+Z`
+> 
+> `$ rostopic list`
+> 
+> `$ rosrun my_robot motor_node`
 
 No **terminal 2** será monitorado a velocidade da roda direita:
 
-`$ rostopic echo /motor/velocity/right`
+>`$ rostopic echo /motor/velocity/right`
 
 No **terminal 2** será monitorado o status do sensor de colisão:
 
-`$ rostopic echo /collision/status`
+> `$ rostopic echo /collision/status`
 
 No **terminal 4** serão publicadas mensagens usando os comandos como
 
-`$ rostopic pub /control_msg std_msgs/String "data: left"`
-
-`$ rostopic pub /collision/status std_msgs/Bool "data: True"`
+> `$ rostopic pub /control_msg std_msgs/String "data: left"`
+>
+> `$ rostopic pub /collision/status std_msgs/Bool "data: True"`
 
 <hr>
