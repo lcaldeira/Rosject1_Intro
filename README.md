@@ -52,7 +52,7 @@ Mude para a pasta de código-fonte com
 
 e depois crie um pacote com
 
-> `$ catkin_create_kg my_robot std_msgs rospy roscpp`
+> `$ catkin_create_pkg my_robot std_msgs rospy roscpp`
 
 onde `my_robot` é o nome do pacote a ser criado e os demais termos são as APIs que queremos associar ao projeto (elas não precisam ser listadas aqui, mas isso evita de ter que adicioná-las depois em  arquivos de configuração).
 
