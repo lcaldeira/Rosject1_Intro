@@ -52,7 +52,7 @@ Mude para a pasta de código-fonte com
 
 e depois crie um pacote com
 
-> `catkin_create_kg my_robot std_msgs rospy roscpp`
+> `$ catkin_create_kg my_robot std_msgs rospy roscpp`
 
 onde `my_robot` é o nome do pacote a ser criado e os demais termos são as APIs que queremos associar ao projeto (elas não precisam ser listadas aqui, mas isso evita de ter que adicioná-las depois em  arquivos de configuração).
 
@@ -123,7 +123,7 @@ Foi criado um script `motor_node.py` e os seguintes comandos do terminal são ex
 
 No **terminal 1** será checado os tópicos ativos e fito o acompanhamento do log de `motor_node`:
 
-> `$ roscore
+> `$ roscore`
 >
 > `Ctrl+Z`
 > 
@@ -133,7 +133,7 @@ No **terminal 1** será checado os tópicos ativos e fito o acompanhamento do lo
 
 No **terminal 2** será monitorado a velocidade da roda direita:
 
->`$ rostopic echo /motor/velocity/right`
+> `$ rostopic echo /motor/velocity/right`
 
 No **terminal 2** será monitorado o status do sensor de colisão:
 
